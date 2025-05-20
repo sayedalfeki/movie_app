@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/config/app_routes.dart';
+import 'package:movie_app/features/onboarding_screen/onboarding_screen.dart';
+import 'package:movie_app/features/splash_screen.dart';
 import '../config/app_theme.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -11,9 +14,11 @@ class MyApp extends StatelessWidget {
       builder:(context, child) =>  MaterialApp(
         title: 'Flutter Demo',
         theme: AppTheme.lightTheme,
-        home: Container(
-          child: Text('starting ..............'),
-        ),
+        initialRoute: AppRoutes.splashRoute,
+        routes: {
+          AppRoutes.splashRoute:(_)=>SplashScreen(),
+          AppRoutes.onBoardingRoute:(_)=>OnboardingScreen()
+        },
       ),
     );
   }

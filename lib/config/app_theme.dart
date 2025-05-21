@@ -30,7 +30,7 @@ class AppTheme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16)
+          borderRadius: BorderRadius.circular(8)
         )),
         backgroundColor: WidgetStatePropertyAll(AppColor.appYellowColor),
         textStyle:WidgetStatePropertyAll(AppStyles.blackNormal20)

@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds:3)).then((value) {
-      Navigator.pushReplacementNamed(context,AppRoutes.onBoardingRoute);
+      Navigator.pushReplacementNamed(context,AppRoutes.onBoardingHomeRoute);
     },);
     return Scaffold(
       body: Column(

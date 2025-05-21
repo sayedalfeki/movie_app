@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/config/app_routes.dart';
+import 'package:movie_app/features/onboarding_screen/onboarding_home_page.dart';
 import 'package:movie_app/features/onboarding_screen/onboarding_screen.dart';
 import 'package:movie_app/features/splash_screen.dart';
 import '../config/app_theme.dart';
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
         initialRoute: AppRoutes.splashRoute,
         routes: {
           AppRoutes.splashRoute:(_)=>SplashScreen(),
-          AppRoutes.onBoardingRoute:(_)=>OnboardingScreen()
+          AppRoutes.onBoardingRoute:(_)=>OnboardingScreen(),
+          AppRoutes.onBoardingHomeRoute:(_)=>OnboardingHomePage()
         },
       ),
     );

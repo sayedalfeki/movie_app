@@ -44,8 +44,8 @@ child: Column(
       decoration: BoxDecoration(
         color:AppColor.mainAppColor,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16)
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20)
         )
       ),
       child: Column(

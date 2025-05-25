@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/config/app_routes.dart';
 import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/features/onboarding_screen/onboarding_widget.dart';
+import 'package:movie_app/features/onboarding_screen/view/onboarding_widget.dart';
 
 class OnboardingHomePage extends StatelessWidget {
   const OnboardingHomePage({super.key});

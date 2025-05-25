@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app/config/app_routes.dart';
 import 'package:movie_app/core/app_assets.dart';
-import 'package:movie_app/features/onboarding_screen/onboarding_widget.dart';
+import 'package:movie_app/features/onboarding_screen/view/onboarding_widget.dart';
 
 class OnboardingScreen extends StatefulWidget {
    OnboardingScreen({super.key});
@@ -45,7 +46,7 @@ var pageController=PageController();
     {
       if(index==onBoardingImages.length-1)
       {
-        Navigator.pop(context);
+        Navigator.pushNamed(context,AppRoutes.loginRoute);
       }
       else
       {

@@ -8,4 +8,8 @@ class AppAssets
   static const String onBoardingImage4='${_assetBase}onboarding_4.png';
   static const String onBoardingImage5='${_assetBase}onboarding_5.png';
   static const String moviePosterImage='${_assetBase}movie_poster.png';
+  static const String avatar1='${_assetBase}avatar1.png';
+  static const String avatar2='${_assetBase}avatar2.png';
+  static const String avatar3='${_assetBase}avatar3.png';
+  static const String forgetPassword='${_assetBase}forgot_password.png';
 }

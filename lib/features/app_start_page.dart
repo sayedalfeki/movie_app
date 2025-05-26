@@ -9,7 +9,7 @@ import 'package:movie_app/features/movie_details_page/movie_details_page.dart';
 import 'package:movie_app/features/onboarding_screen/view/onboarding_home_page.dart';
 import 'package:movie_app/features/onboarding_screen/view/onboarding_screen.dart';
 import 'package:movie_app/features/profile_page/edit_profile_page.dart';
-import 'package:movie_app/features/splash_screen.dart';
+import 'package:movie_app/features/splash/view/splash_screen.dart';
 import '../config/app_theme.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

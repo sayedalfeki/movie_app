@@ -10,13 +10,14 @@ class OnBoardingViewModel extends Cubit<OnBoardingState>
   int pageIndex=0;
   var pageController=PageController();
   List<OnBoardingModel> pages=OnBoardingModel.fillOnBoardingPages();
-  move(int index,bool isNext)
+  move(int index,bool isNext)async
   {
     if(isNext)
     {
       if(index==pages.length-1)
       {
-        CashHelper.getInstance().saveBool(AppKeys.onBoardingKey,true);
+        var cashHelper=await CashHelper.getInstance();
+            cashHelper.saveBool(AppKeys.onBoardingKey,true);
         emit(OnBoardingNavigationState());
       }
       else

@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/config/app_routes.dart';
 import 'package:movie_app/core/app_assets.dart';
 import 'package:movie_app/core/app_colors.dart';
-import 'package:movie_app/core/app_keys.dart';
 import 'package:movie_app/core/app_styles.dart';
-import 'package:movie_app/core/cash_helper.dart';
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+import 'package:movie_app/features/splash/view_model/splash_state.dart';
+import 'package:movie_app/features/splash/view_model/splash_view_model.dart';
 
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
+class SplashScreen extends StatelessWidget {
+  final SplashViewModel splashViewModel = SplashViewModel();
 
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-
-    super.initState();
-  }
+  SplashScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds:3)).then((value) {
-      bool? isBoardingViewed=CashHelper.getInstance().getSavedBool(AppKeys.onBoardingKey);
-      Navigator.pushReplacementNamed(context,isBoardingViewed==null?
-      AppRoutes.onBoardingHomeRoute:AppRoutes.loginRoute);
-    },);
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-       //crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(child: Image.asset(AppAssets.splashImage)),
-              ],
+    return BlocListener<SplashViewModel, SplashState>(
+      bloc: splashViewModel..navigate(),
+      listener: (context, state) {
+        if (state is SplashNavigationState) {
+          Navigator.pushReplacementNamed(
+            context,
+            state.isBoardingViewed == null
+                ? AppRoutes.onBoardingHomeRoute
+                : AppRoutes.loginRoute,
+          );
+        }
+      },
+      child: Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+
+          children: [
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [Center(child: Image.asset(AppAssets.splashImage))],
+              ),
             ),
-          ),
-          //Spacer(),
-          Text('Route',style: AppStyles.whiteBold24.copyWith(
-            color: AppColor.appYellowColor
-          ),),
-          Text('powered by sayed elfeki',style: AppStyles.whiteNormal15,)
-        ],
+            Text(
+              'Route',
+              style: AppStyles.whiteBold24.copyWith(
+                color: AppColor.appYellowColor,
+              ),
+            ),
+            Text('powered by sayed elfeki', style: AppStyles.whiteNormal15),
+          ],
+        ),
       ),
     );
   }

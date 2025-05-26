@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
+import 'package:movie_app/features/onboarding_screen/model/onboarding_model.dart';
 class OnboardingWidget extends StatelessWidget {
-  const OnboardingWidget({super.key, required this.title,
-    required this.description, required this.visible,
-    required this.next, required this.image,
+  const OnboardingWidget({super.key, required this.visible,
+    required this.next, required this.onBoardingModel,
     required this.onNextPressed, this.onBackPressed,});
-  final String image;
-  final String title;
-  final String description;
+  final OnBoardingModel onBoardingModel;
   final bool visible;
   final String next;
   final void Function() onNextPressed;
@@ -16,31 +14,28 @@ class OnboardingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-     // alignment: Alignment.bottomCenter,
-      // width: double.infinity,
-      //height: double.infinity,
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(image))
+              image: AssetImage(onBoardingModel.image))
       ),
 child: Column(
   children: [
     Spacer(),
-    choiceWidget(context: context, title: title,
-        description: description, visible: visible,
+    choiceWidget(context: context,onBoardingModel: onBoardingModel,
+        visible: visible,
         next: next,onNextPressed: onNextPressed,onBackPressed: onBackPressed),
   ],
 ),
     );
   }
  Widget choiceWidget({required BuildContext context,
-   required String title,required String description,
+   required OnBoardingModel onBoardingModel,
    required bool visible,required String next,
    required void Function() onNextPressed,void Function()? onBackPressed})
   {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
         color:AppColor.mainAppColor,
         borderRadius: BorderRadius.only(
@@ -51,13 +46,24 @@ child: Column(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Center(child: Text(title,style: AppStyles.whiteBold24,)),
+          Center(child: Text(onBoardingModel.title,style: AppStyles.whiteBold24,)),
           SizedBox(height: 5,),
-          Text(description,
-            style: AppStyles.whiteNormal15,),
+          Visibility(
+            visible:onBoardingModel.description.isEmpty?false:true,
+            child: Container(
+              //width:50,
+              //color: Colors.red,
+              margin: EdgeInsets.symmetric(horizontal:50),
+              child: Text(onBoardingModel.description,
+                softWrap: true,
+                textAlign: TextAlign.center,
+                style: AppStyles.whiteNormal15,),
+            ),
+          ),
           SizedBox(height: 10,),
           ElevatedButton(onPressed:onNextPressed,
-              child:Text(next,style: AppStyles.blackRegular16,)),
+              child:Text(next,style: AppStyles.blackRegular16,
+              )),
           Visibility(
             visible:visible ,
             child: ElevatedButton(

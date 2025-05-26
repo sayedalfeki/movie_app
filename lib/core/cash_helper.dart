@@ -1,3 +1,4 @@
+import 'package:movie_app/core/app_keys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CashHelper
@@ -5,16 +6,16 @@ class CashHelper
   static CashHelper? _instance;
   static SharedPreferences? _preferences;
   CashHelper._();
-  static CashHelper getInstance()
+  static Future<CashHelper> getInstance()async
   {
     if(_instance==null)
     {
-      _getPreferences();
+      await _getPreferences();
       _instance=CashHelper._();
     }
     return _instance!;
   }
-  static _getPreferences()async
+  static Future<void> _getPreferences()async
   {
     _preferences=await SharedPreferences.getInstance();
   }
@@ -26,5 +27,9 @@ class CashHelper
  bool? getSavedBool(String key)
   {
     return _preferences!.getBool(key);
+  }
+  clearKey(String key)
+  {
+    _preferences!.remove(key);
   }
 }

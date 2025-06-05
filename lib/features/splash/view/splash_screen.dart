@@ -6,10 +6,8 @@ import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
 import 'package:movie_app/features/splash/view_model/splash_state.dart';
 import 'package:movie_app/features/splash/view_model/splash_view_model.dart';
-
 class SplashScreen extends StatelessWidget {
   final SplashViewModel splashViewModel = SplashViewModel();
-
   SplashScreen({super.key});
   @override
   Widget build(BuildContext context) {

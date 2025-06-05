@@ -8,6 +8,9 @@ class AppTheme
   static ThemeData lightTheme=ThemeData(
     scaffoldBackgroundColor: AppColor.mainAppColor,
     inputDecorationTheme: InputDecorationTheme(
+      floatingLabelBehavior: FloatingLabelBehavior.always,
+      floatingLabelStyle: AppStyles.yellowRoboto14,
+      floatingLabelAlignment: FloatingLabelAlignment.start,
       fillColor: AppColor.appLightBlackColor,
       filled: true,
       border: OutlineInputBorder(

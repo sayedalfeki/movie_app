@@ -9,5 +9,6 @@ class AppRoutes
   static const String homeRoute='home';
   static const String editProfileRoute='edit_profile';
   static const String movieDetailsRoute='movie_details';
-
+  static const String changePasswordRoute='change_password';
+  static const String resetCodeRoute='reset_code';
 }

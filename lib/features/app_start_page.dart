@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/config/app_routes.dart';
-import 'package:movie_app/features/auth/forgot_password/forgot_password_page.dart';
-import 'package:movie_app/features/auth/login/login_page.dart';
-import 'package:movie_app/features/auth/register/register_page.dart';
+import 'package:movie_app/features/auth/forgot_password/view/change_password_widget.dart';
+import 'package:movie_app/features/auth/forgot_password/view/forgot_password_page.dart';
+import 'package:movie_app/features/auth/forgot_password/view/reset_code_widget.dart';
+import 'package:movie_app/features/auth/login/view/login_page.dart';
+import 'package:movie_app/features/auth/register/view/register_page.dart';
 import 'package:movie_app/features/home/home_page.dart';
 import 'package:movie_app/features/movie_details_page/movie_details_page.dart';
 import 'package:movie_app/features/onboarding_screen/view/onboarding_home_page.dart';
@@ -31,7 +33,9 @@ class MyApp extends StatelessWidget {
           AppRoutes.forgotPasswordRoute:(_)=>ForgotPasswordPage(),
           AppRoutes.homeRoute:(_)=>HomePage(),
           AppRoutes.editProfileRoute:(_)=>EditProfilePage(),
-          AppRoutes.movieDetailsRoute:(_)=>MovieDetailsPage()
+          AppRoutes.movieDetailsRoute:(_)=>MovieDetailsPage(),
+          AppRoutes.changePasswordRoute:(_)=>ChangePasswordWidget(),
+          AppRoutes.resetCodeRoute:(_)=>ResetCodeWidget()
         },
       ),
     );

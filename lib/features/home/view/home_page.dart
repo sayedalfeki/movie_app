@@ -5,7 +5,7 @@ import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/features/explore_page/explore_page.dart';
 import 'package:movie_app/features/home/view_model/home_state.dart';
 import 'package:movie_app/features/home/view_model/home_view_model.dart';
-import 'package:movie_app/features/movies_page/movies_page.dart';
+import 'package:movie_app/features/movies_page/view/movies_page.dart';
 import 'package:movie_app/features/profile_page/profile_page.dart';
 import 'package:movie_app/features/search/search_page.dart';
 class HomePage extends StatefulWidget {

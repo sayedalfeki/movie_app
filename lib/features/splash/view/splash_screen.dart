@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
             context,
             state.isBoardingViewed == null
                 ? AppRoutes.onBoardingHomeRoute
-                : AppRoutes.loginRoute,
+                : AppRoutes.homeRoute,
           );
         }
       },

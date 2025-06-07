@@ -3,8 +3,10 @@ import 'package:movie_app/core/action_container_widget.dart';
 import 'package:movie_app/core/app_assets.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
+import 'package:movie_app/features/movies_page/domain/movies_entity.dart';
 class SearchItemWidget extends StatelessWidget {
-  const SearchItemWidget({super.key});
+  const SearchItemWidget({super.key,this.movieEntity});
+  final Movies? movieEntity;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,7 +15,10 @@ class SearchItemWidget extends StatelessWidget {
         children: [
           ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset(AppAssets.onBoardingImage1)),
+              child:
+              //Image.asset(AppAssets.onBoardingImage5)
+              Image.network(movieEntity?.mediumCoverImage??'')
+          ),
 
           Container(
             width:70,
@@ -26,7 +31,7 @@ class SearchItemWidget extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('7.7',style: AppStyles.whiteNormal15.copyWith(
+                Text('${movieEntity?.rating??0}',style: AppStyles.whiteNormal15.copyWith(
                   fontSize: 20
                 ),),
                 SizedBox(width: 5,),

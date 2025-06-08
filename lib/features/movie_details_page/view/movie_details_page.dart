@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/action_container_widget.dart';
+import 'package:movie_app/core/app_custom_widget/action_container_widget.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
-import 'package:movie_app/features/movie_details_page/movie_cast_widget.dart';
-import 'package:movie_app/features/movie_details_page/movie_genres_widget.dart';
-import 'package:movie_app/features/movie_details_page/movie_poster_widget.dart';
-import 'package:movie_app/features/movie_details_page/screen_shots_widget.dart';
-import 'package:movie_app/features/movie_details_page/similar_movie_widget.dart';
+import 'package:movie_app/features/movie_details_page/view/movie_cast_widget.dart';
+import 'package:movie_app/features/movie_details_page/view/movie_genres_widget.dart';
+import 'package:movie_app/features/movie_details_page/view/movie_poster_widget.dart';
+import 'package:movie_app/features/movie_details_page/view/screen_shots_widget.dart';
+import 'package:movie_app/features/movie_details_page/view/similar_movie_widget.dart';
 
 class MovieDetailsPage extends StatelessWidget {
   const MovieDetailsPage({super.key});

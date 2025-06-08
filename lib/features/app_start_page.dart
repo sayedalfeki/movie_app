@@ -7,7 +7,7 @@ import 'package:movie_app/features/auth/forgot_password/view/reset_code_widget.d
 import 'package:movie_app/features/auth/login/view/login_page.dart';
 import 'package:movie_app/features/auth/register/view/register_page.dart';
 import 'package:movie_app/features/home/view/home_page.dart';
-import 'package:movie_app/features/movie_details_page/movie_details_page.dart';
+import 'package:movie_app/features/movie_details_page/view/movie_details_page.dart';
 import 'package:movie_app/features/onboarding_screen/view/onboarding_home_page.dart';
 import 'package:movie_app/features/onboarding_screen/view/onboarding_screen.dart';
 import 'package:movie_app/features/profile_page/edit_profile_page.dart';

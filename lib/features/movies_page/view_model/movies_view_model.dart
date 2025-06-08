@@ -3,6 +3,8 @@ import 'package:movie_app/features/movies_page/domain/movies_request.dart';
 import 'package:movie_app/features/movies_page/domain/movies_use_case.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_state.dart';
 
+import '../domain/movies_entity.dart';
+
 class MoviesViewModel extends Cubit<MoviesState>
 {
   final MoviesUseCase moviesUseCase;
@@ -16,10 +18,14 @@ class MoviesViewModel extends Cubit<MoviesState>
     selectedIndex=value;
     emit(ChangeIndexMoviesState());
   }
-  getAllMovies()async
+  getAllMovies({String? search})async
   {
     emit(MoviesLoadingState());
-    final response=await moviesUseCase.invoke();
+    final response=await moviesUseCase.invoke(
+      movieRequest: MoviesRequest(
+        queryTerm: search
+      )
+    );
     //print(response.response?.data?.limit);
     if(response.response!=null)
     {
@@ -45,5 +51,25 @@ class MoviesViewModel extends Cubit<MoviesState>
     {
       emit(MoviesGenreErrorState(errorMessage: response.error));
     }
+  }
+  List<String> fillGenreList(List<Movies> movies)
+  {
+
+    List<String> genre=[];
+    movies.forEach((element) {
+      if(genre.isEmpty)
+      {
+        genre.add(element.genres?[0]??'');
+
+      }
+      else
+      {
+        if(!genre.contains(element.genres?[0])) {
+          print(genre[0]);
+          genre.add(element.genres?[0] ?? '');
+        }
+      }
+    },);
+    return genre;
   }
 }

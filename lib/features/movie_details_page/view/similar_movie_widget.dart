@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:movie_app/core/app_styles.dart';
 
-import '../search/search_item_widget.dart';
+import '../../../core/app_custom_widget/movie_item_widget.dart';
+
 
 class SimilarMovieWidget extends StatelessWidget {
   const SimilarMovieWidget({super.key});
@@ -21,7 +22,7 @@ class SimilarMovieWidget extends StatelessWidget {
             childAspectRatio: 2/3
         ),
         itemBuilder:(context, index) {
-          return SearchItemWidget();
+          return MovieItemWidget();
         },))
         ],
       ),

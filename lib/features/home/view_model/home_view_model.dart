@@ -7,7 +7,7 @@ import 'package:movie_app/features/movies_page/view/available_now_widget.dart';
 import '../../explore_page/explore_page.dart';
 
 import '../../profile_page/profile_page.dart';
-import '../../search/search_page.dart';
+import '../../search/view/search_page.dart';
 
 class HomeViewModel extends Cubit<HomeState>
 {

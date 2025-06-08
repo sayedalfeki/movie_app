@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'app_colors.dart';
-import 'app_styles.dart';
+import '../app_colors.dart';
+import '../app_styles.dart';
 
 class ActionContainerWidget extends StatelessWidget {
   const ActionContainerWidget({super.key, required this.data,this.icon,

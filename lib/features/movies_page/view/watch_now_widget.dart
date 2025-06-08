@@ -4,8 +4,9 @@ import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_state.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_view_model.dart';
-import 'package:movie_app/features/search/search_item_widget.dart';
 
+
+import '../../../core/app_custom_widget/movie_item_widget.dart';
 import '../data/movies_remote_dio_data_source_impl.dart';
 import '../data/movies_repository_impl.dart';
 import '../domain/movies_use_case.dart';
@@ -43,7 +44,7 @@ class WatchNowWidget extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount:state.movies.length,
                 itemBuilder: (context, index) {
-                return SearchItemWidget(
+                return MovieItemWidget(
                 movieEntity: state.movies[index],
                 );
               },),

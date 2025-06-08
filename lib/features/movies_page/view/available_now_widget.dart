@@ -12,9 +12,10 @@ import 'package:movie_app/features/movies_page/domain/movies_use_case.dart';
 import 'package:movie_app/features/movies_page/view/watch_now_widget.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_state.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_view_model.dart';
-import 'package:movie_app/features/search/search_item_widget.dart';
+
 
 import '../../../core/app_styles.dart';
+import '../../../core/app_custom_widget/movie_item_widget.dart';
 
 class AvailableNowWidget extends StatelessWidget {
    AvailableNowWidget({super.key});
@@ -70,7 +71,7 @@ List<Movies> movies=[];
                          child: Card(
                            color: Colors.transparent,
                            elevation: 50,
-                           child: SearchItemWidget(
+                           child:MovieItemWidget(
                              movieEntity:movies[index],
                            ),
                          ));

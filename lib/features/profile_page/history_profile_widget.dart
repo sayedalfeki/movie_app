@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/config/app_routes.dart';
-import 'package:movie_app/features/search/search_item_widget.dart';
+
+
+import '../../core/app_custom_widget/movie_item_widget.dart';
 
 class HistoryProfileWidget extends StatelessWidget {
   const HistoryProfileWidget({super.key});
@@ -13,7 +14,7 @@ class HistoryProfileWidget extends StatelessWidget {
         childAspectRatio: 2/3
         ),
         itemBuilder:(context, index) {
-          return SearchItemWidget();
+          return MovieItemWidget();
         },));
   }
 }

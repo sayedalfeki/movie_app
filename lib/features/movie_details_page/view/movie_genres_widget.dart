@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/core/action_container_widget.dart';
+import 'package:movie_app/core/app_custom_widget/action_container_widget.dart';
 import 'package:movie_app/core/app_styles.dart';
 
 class MovieGenresWidget extends StatelessWidget {

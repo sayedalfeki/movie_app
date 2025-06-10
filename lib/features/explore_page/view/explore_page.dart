@@ -4,6 +4,8 @@ import 'package:movie_app/core/app_styles.dart';
 import 'package:movie_app/features/explore_page/view/explore_item_widget.dart';
 import 'package:movie_app/features/explore_page/view/explore_tabs_widget.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_state.dart';
+import '../../../core/app_custom_widget/error_widget.dart';
+import '../../../core/app_custom_widget/loading_widget.dart';
 import '../../movies_page/data/movies_remote_dio_data_source_impl.dart';
 import '../../movies_page/data/movies_repository_impl.dart';
 import '../../movies_page/domain/movies_use_case.dart';
@@ -21,7 +23,7 @@ List<String> genres=[];
   Widget build(BuildContext context) {
 
     return BlocConsumer(
-      bloc: moviesViewModel..getAllMovies(limit: 100),
+      bloc: moviesViewModel..getAllMovies(limit:150),
       listener: (context, state) {
         if(state is MoviesSuccessState)
         {
@@ -63,9 +65,13 @@ List<String> genres=[];
           ],
         ):
         state is MoviesLoadingState?
-        Center(child: CircularProgressIndicator(),):
+        LoadingWidget():
         state is MoviesErrorState?
-        Center(child: Text(state.errorMessage??'',style: AppStyles.whiteNormal15,),):
+        AppErrorWidget(errorMessage:state.errorMessage??'',
+        onPressed: () {
+          moviesViewModel.getAllMovies(limit:150);
+        },
+        ):
 
         Container(),
       ),

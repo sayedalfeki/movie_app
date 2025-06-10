@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/core/app_custom_widget/error_widget.dart';
+import 'package:movie_app/core/app_custom_widget/loading_widget.dart';
 import 'package:movie_app/core/app_styles.dart';
 import 'package:movie_app/features/explore_page/view_model/explore_state.dart';
 import 'package:movie_app/features/movies_page/domain/movies_entity.dart';
@@ -51,9 +53,12 @@ class ExploreItemWidget extends StatelessWidget {
           ),
         ):Container(),
       ):
-      state is ExploreLoadingState?Center(child: CircularProgressIndicator(),):
-      state is ExploreErrorState?Center(child: Text(state.errorMessage??'',
-    style: AppStyles.whiteNormal15,),):Container(),
+      state is ExploreLoadingState?LoadingWidget():
+      state is ExploreErrorState?AppErrorWidget(errorMessage:state.errorMessage??''
+      ,onPressed: () {
+          exploreViewModel.getGenreMovies();
+      },
+      ):Container(),
     );
   }
 }

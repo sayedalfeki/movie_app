@@ -15,6 +15,9 @@ import 'package:movie_app/features/similar_movies/view/similar_movie_widget.dart
 import 'package:movie_app/features/movie_details_page/view_model/movie_details_state.dart';
 import 'package:movie_app/features/movie_details_page/view_model/movie_details_view_model.dart';
 
+import '../../../core/app_custom_widget/error_widget.dart';
+import '../../../core/app_custom_widget/loading_widget.dart';
+
 class MovieDetailsPage extends StatelessWidget {
    MovieDetailsPage({super.key});
 final MovieDetailsViewmodel movieDetailsViewmodel=MovieDetailsViewmodel
@@ -33,9 +36,13 @@ final MovieDetailsViewmodel movieDetailsViewmodel=MovieDetailsViewmodel
       builder:(context, state) =>  Scaffold(
         body: SafeArea(
           child: state is MovieDetailsLoadingState?
-          Center(child: CircularProgressIndicator(),):
+          LoadingWidget():
               state is MovieDetailsErrorState?
-          Center(child: Text(state.errorMessage??'',style: AppStyles.whiteNormal15,),):
+          AppErrorWidget(errorMessage: state.errorMessage??'',
+          onPressed: () {
+            movieDetailsViewmodel.getMovie(movieId);
+          },
+          ):
           state is MovieDetailsSuccessState?
           state.movie!=null?
           SingleChildScrollView(

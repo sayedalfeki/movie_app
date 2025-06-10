@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/app_colors.dart';
+import 'package:movie_app/core/app_custom_widget/error_widget.dart';
+import 'package:movie_app/core/app_custom_widget/loading_widget.dart';
 import 'package:movie_app/core/app_styles.dart';
 import 'package:movie_app/features/explore_page/view_model/explore_view_model.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_state.dart';
@@ -34,9 +36,13 @@ class WatchNowWidget extends StatelessWidget {
         BlocBuilder(
           bloc:exploreViewModel..getGenreMovies() ,
         builder:(context, state) => state is ExploreLoadingState?
-    Center(child: CircularProgressIndicator(),):
+    LoadingWidget():
             state is ExploreErrorState?
-    Center(child: Text(state.errorMessage??'',style: AppStyles.whiteNormal15,),):
+    AppErrorWidget(errorMessage: state.errorMessage??'',
+    onPressed: () {
+      exploreViewModel.getGenreMovies();
+    },
+    ):
                 state is ExploreSuccessState?
     Expanded(
             child: Container(

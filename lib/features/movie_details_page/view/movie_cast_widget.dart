@@ -2,31 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:movie_app/core/app_assets.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
+import 'package:movie_app/features/movie_details_page/domain/movie_details_entity.dart';
 
 class MovieCastWidget extends StatelessWidget {
-  const MovieCastWidget({super.key});
-
+  const MovieCastWidget({super.key,required this.casts});
+final List<Cast> casts;
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.transparent,
       height: 300,
       child:Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('cast',style: AppStyles.whiteNormal15,),
           SizedBox(height: 10,),
-          Expanded(
+          casts.isEmpty?Text('no casts',style: AppStyles.whiteBold24,):Expanded(
             child: ListView.builder(
-              itemCount: 4,
+              itemCount:casts.length,
               itemBuilder: (context, index) {
-              return CastCard();
+              return CastCard(casts[index]);
             },),
           )
         ],
       ) ,
     );
   }
-  Widget CastCard()
+  Widget CastCard(Cast cast)
   {
     return Container(
       margin: EdgeInsets.all(8),
@@ -41,17 +43,22 @@ class MovieCastWidget extends StatelessWidget {
             height: 100,
             width: 100,
             child: ClipRRect(
-              child: Image.asset(AppAssets.avatar1),
+              borderRadius: BorderRadius.circular(50),
+              child: Image.network(cast.urlSmallImage??'',
+              fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(width: 10,),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('name: hgkjlk;kl;jhj',style: AppStyles.whiteNormal15,),
-              SizedBox(height: 10,),
-              Text('character: hgggfdgfewwytkjgkjhjnmmvn',style: AppStyles.whiteNormal15,)
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('name: ${cast.name}',style: AppStyles.whiteNormal15,),
+                SizedBox(height: 10,),
+                Text('character: ${cast.characterName}',style: AppStyles.whiteNormal15,)
+              ],
+            ),
           )
         ],
       ),

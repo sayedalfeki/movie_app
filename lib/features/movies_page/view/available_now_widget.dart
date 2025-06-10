@@ -12,8 +12,6 @@ import 'package:movie_app/features/movies_page/domain/movies_use_case.dart';
 import 'package:movie_app/features/movies_page/view/watch_now_widget.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_state.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_view_model.dart';
-
-
 import '../../../core/app_styles.dart';
 import '../../../core/app_custom_widget/movie_item_widget.dart';
 
@@ -32,17 +30,18 @@ List<Movies> movies=[];
   Widget build(BuildContext context) {
 
     return BlocConsumer<MoviesViewModel,MoviesState>(
-      bloc: moviesViewModel,
+      bloc: moviesViewModel..getAllMovies(),
       listener: (context, state) {
         if(state is MoviesSuccessState)
         {
-          movies=state.movies;
+          state.movies.forEach((element) {
+            movies.add(element);
+          },);
         }
       },
-      builder:(context, state) => state is MoviesLoadingState?
-      Center(child: CircularProgressIndicator(),):state is MoviesErrorState?
-        Center(child: Text(state.errorMessage??'',style: AppStyles.whiteNormal15,),):
-      movies.isNotEmpty?Column(
+      builder:(context, state) =>
+      movies.isNotEmpty?
+      Column(
         children: [
           Container(
             decoration: BoxDecoration(
@@ -64,7 +63,9 @@ List<Movies> movies=[];
 
                    itemCount:movies.length,
                    itemBuilder:(context, index, realIndex) {
-                     return GestureDetector(
+                     return index>=movies.length-1?
+                     Center(child: CircularProgressIndicator(),):
+                     GestureDetector(
                          onTap: () {
                            Navigator.pushNamed(context,AppRoutes.movieDetailsRoute);
                          },
@@ -78,7 +79,13 @@ List<Movies> movies=[];
                    },
                    options:CarouselOptions(
                      onPageChanged: (index, reason) {
+                       print('page index=$index & movies length is : ${movies.length}');
+                       if(index>=movies.length-1)
+                       {
+                         moviesViewModel.getAllMovies();
+                       }
                        moviesViewModel.changeSelectedIndex(index);
+                       //if(index)
 
                      },
                      // onScrolled: (value) {
@@ -103,7 +110,11 @@ List<Movies> movies=[];
             child: WatchNowWidget(movieType: movies[moviesViewModel.selectedIndex].genres?[0]??''),
           ))
         ],
-      ):Center(child: Text('no movies available',style: AppStyles.whiteNormal15,),),
+      ):
+      state is MoviesLoadingState?
+      Center(child: CircularProgressIndicator(),):state is MoviesErrorState?
+      Center(child: Text(state.errorMessage??'',style: AppStyles.whiteNormal15,),):
+      Center(child: Text('no movies available',style: AppStyles.whiteNormal15,),),
     );
   }
 }

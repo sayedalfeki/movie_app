@@ -1,10 +1,11 @@
-import 'package:movie_app/config/app_routes.dart';
+
 import 'package:movie_app/core/api/api_response.dart';
 import 'package:movie_app/core/api/movies_api_manager.dart';
 import 'package:movie_app/features/movie_details_page/domain/movie_details_data_source.dart';
 import 'package:movie_app/features/movie_details_page/domain/movie_details_entity.dart';
 
 import '../../../core/api/api_endpoints.dart';
+import '../../movies_page/domain/movies_entity.dart';
 
 class MovieDetailsRemoteDataSourceImpl extends MovieDetailsDataSource
 {
@@ -35,9 +36,37 @@ class MovieDetailsRemoteDataSourceImpl extends MovieDetailsDataSource
       MovieDetailsEntity movieDetailsEntity=MovieDetailsEntity.fromJson(response.data);
       print(response.data);
       return ApiResponse(response: movieDetailsEntity);
-    }catch(e)
+    }catch(e,s)
     {
-      return ApiResponse(error: e.toString());
+      return ApiResponse(error: 'exception : ${e.toString()}, \n place in : ${s.toString()}');
+
     }
   }
+  @override
+  Future<ApiResponse<MoviesEntity>> getSimilarMovies(int movieId)async
+  {
+    try
+    {
+      final response=await moviesApiManager.get(ApiEndPoints.movieSuggestionPath,
+          queryParams: {
+            'movie_id':movieId,
+          }
+      );
+      if(response.statusCode!>=500)
+      {
+        return ApiResponse(error:'server error : ${ response.statusMessage}');
+      }
+      if(response.statusCode!<=400&&response.statusCode!>300)
+      {
+        return ApiResponse(error: 'client error : ${response.statusMessage}');
+      }
+      MoviesEntity moviesEntity=MoviesEntity.fromJson(response.data);
+      print(response.data);
+      return ApiResponse(response: moviesEntity);
+    }catch(e,s)
+    {
+      return ApiResponse(error: 'exception : ${e.toString()}, \n place in : ${s.toString()}');
+    }
+  }
+
 }

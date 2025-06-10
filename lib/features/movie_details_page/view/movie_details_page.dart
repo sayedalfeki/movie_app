@@ -11,7 +11,7 @@ import 'package:movie_app/features/movie_details_page/view/movie_cast_widget.dar
 import 'package:movie_app/features/movie_details_page/view/movie_genres_widget.dart';
 import 'package:movie_app/features/movie_details_page/view/movie_poster_widget.dart';
 import 'package:movie_app/features/movie_details_page/view/screen_shots_widget.dart';
-import 'package:movie_app/features/movie_details_page/view/similar_movie_widget.dart';
+import 'package:movie_app/features/similar_movies/view/similar_movie_widget.dart';
 import 'package:movie_app/features/movie_details_page/view_model/movie_details_state.dart';
 import 'package:movie_app/features/movie_details_page/view_model/movie_details_view_model.dart';
 
@@ -65,14 +65,13 @@ final MovieDetailsViewmodel movieDetailsViewmodel=MovieDetailsViewmodel
                     height: 300,
                     child: ScreenShotsWidget(
                       images:[state.movie?.largeScreenshotImage1,
-
                         state.movie?.largeScreenshotImage2,
                         state.movie?.largeScreenshotImage3
                       ],
                     ),
                   ),
                   SizedBox(height: 10,),
-                  //SimilarMovieWidget(),
+                  SimilarMovieWidget(movieId: movieId,),
                   Text('summary',style: AppStyles.whiteBold24,),
                   SizedBox(height: 10,),
                   Text(

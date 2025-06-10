@@ -20,4 +20,5 @@ class MovieDetailsViewmodel extends Cubit<MovieDetailsState>
       emit(MovieDetailsErrorState(errorMessage: response.error));
     }
   }
+
 }

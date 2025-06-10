@@ -2,22 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
+import 'package:movie_app/features/explore_page/view_model/explore_view_model.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_state.dart';
 import 'package:movie_app/features/movies_page/view_model/movies_view_model.dart';
-
-
 import '../../../core/app_custom_widget/movie_item_widget.dart';
+import '../../explore_page/view_model/explore_state.dart';
 import '../data/movies_remote_dio_data_source_impl.dart';
 import '../data/movies_repository_impl.dart';
 import '../domain/movies_use_case.dart';
 class WatchNowWidget extends StatelessWidget {
    WatchNowWidget({super.key,required this.movieType});
   final String movieType;
-  MoviesViewModel moviesViewModel=MoviesViewModel
-    (MoviesUseCase(moviesRepository:
-  MoviesRepositoryImpl(moviesDataSourceRepository: MoviesRemoteDioDataSourceImpl())));
+
   @override
   Widget build(BuildContext context) {
+    ExploreViewModel exploreViewModel=ExploreViewModel
+      (MoviesUseCase(moviesRepository:
+    MoviesRepositoryImpl(moviesDataSourceRepository: MoviesRemoteDioDataSourceImpl()))
+        ,genre: movieType);
     return Column(
       children: [
         Row(
@@ -30,12 +32,12 @@ class WatchNowWidget extends StatelessWidget {
         ),
         SizedBox(height: 15,),
         BlocBuilder(
-          bloc:moviesViewModel..getGenreMovies(movieType) ,
-        builder:(context, state) => state is MoviesGenreLoadingState?
+          bloc:exploreViewModel..getGenreMovies() ,
+        builder:(context, state) => state is ExploreLoadingState?
     Center(child: CircularProgressIndicator(),):
-            state is MoviesGenreErrorState?
+            state is ExploreErrorState?
     Center(child: Text(state.errorMessage??'',style: AppStyles.whiteNormal15,),):
-                state is MoviesGenreSuccessState?
+                state is ExploreSuccessState?
     Expanded(
             child: Container(
               height:200,

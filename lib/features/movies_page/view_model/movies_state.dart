@@ -15,15 +15,3 @@ class MoviesErrorState extends MoviesState{
   MoviesErrorState({required this.errorMessage});
 }
 class ChangeIndexMoviesState extends MoviesState{}
-class MoviesGenreLoadingState extends MoviesState{}
-class MoviesGenreSuccessState extends MoviesState{
-  final List<Movies> movies;
-
-  MoviesGenreSuccessState({required this.movies});
-
-}
-class MoviesGenreErrorState extends MoviesState{
-  final String? errorMessage;
-
-  MoviesGenreErrorState({required this.errorMessage});
-}

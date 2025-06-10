@@ -8,27 +8,39 @@ import '../domain/movies_entity.dart';
 class MoviesViewModel extends Cubit<MoviesState>
 {
   final MoviesUseCase moviesUseCase;
+  int page=1;
+  int selectedTabIndex=0;
+  int selectedIndex=0;
+  int explorePage=1;
   MoviesViewModel(this.moviesUseCase):super(InitMoviesState())
   {
-    getAllMovies();
+   // getAllMovies();
   }
-  int selectedIndex=0;
   changeSelectedIndex(int value)
   {
     selectedIndex=value;
     emit(ChangeIndexMoviesState());
   }
-  getAllMovies({String? search})async
+  changeSelectedTabIndex(int value)
+  {
+    selectedTabIndex=value;
+    explorePage=1;
+    emit(ChangeIndexMoviesState());
+  }
+  getAllMovies({int limit=10,String? search})async
   {
     emit(MoviesLoadingState());
     final response=await moviesUseCase.invoke(
       movieRequest: MoviesRequest(
+        limit:limit,
+        page: page,
         queryTerm: search
       )
     );
     //print(response.response?.data?.limit);
     if(response.response!=null)
     {
+      page++;
       emit(MoviesSuccessState(movies: response.response?.data?.movies??[]));
     }
     else
@@ -36,22 +48,7 @@ class MoviesViewModel extends Cubit<MoviesState>
       emit(MoviesErrorState(errorMessage: response.error));
     }
   }
-  getGenreMovies(String genre)async
-  {
-    emit(MoviesGenreLoadingState());
-    final response=await moviesUseCase.invoke(movieRequest: MoviesRequest(
-      genre: genre
-    ));
-    //print(response.response?.data?.limit);
-    if(response.response!=null)
-    {
-      emit(MoviesGenreSuccessState(movies: response.response?.data?.movies??[]));
-    }
-    else
-    {
-      emit(MoviesGenreErrorState(errorMessage: response.error));
-    }
-  }
+
   List<String> fillGenreList(List<Movies> movies)
   {
 
@@ -70,6 +67,7 @@ class MoviesViewModel extends Cubit<MoviesState>
         }
       }
     },);
+    //emit(ChangeIndexMoviesState());
     return genre;
   }
 }

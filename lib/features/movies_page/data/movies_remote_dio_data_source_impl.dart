@@ -10,7 +10,7 @@ import '../../../core/api/movies_api_manager.dart';
 class MoviesRemoteDioDataSourceImpl extends MoviesDataSourceRepository
 {
   @override
-  Future<ApiResponse<MoviesEntity>> getAllMovies({MoviesRequest? movieRequest}) async{
+  Future<ApiResponse<MoviesDto>> getAllMovies({MoviesRequest? movieRequest}) async{
     try
     {
       final response=await MoviesApiManager.instance.get(ApiEndPoints.listMoviesPath,
@@ -25,7 +25,7 @@ class MoviesRemoteDioDataSourceImpl extends MoviesDataSourceRepository
         return ApiResponse(error: 'client error : ${response.statusMessage}');
       }
       //print(response.data);
-      MoviesEntity moviesDto=MoviesEntity.fromJson(response.data);
+      MoviesDto moviesDto=MoviesDto.fromJson(response.data);
       //print(moviesDto.dataDto?.moviesDto);
       return ApiResponse(
         response: moviesDto

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_custom_widget/error_widget.dart';
 import 'package:movie_app/core/app_custom_widget/loading_widget.dart';
@@ -32,7 +33,7 @@ class WatchNowWidget extends StatelessWidget {
               Icon(Icons.arrow_forward,color: AppColor.appYellowColor,)],)
           ],
         ),
-        SizedBox(height: 15,),
+        SizedBox(height: 15.h,),
         BlocBuilder(
           bloc:exploreViewModel..getGenreMovies() ,
         builder:(context, state) => state is ExploreLoadingState?
@@ -44,20 +45,21 @@ class WatchNowWidget extends StatelessWidget {
     },
     ):
                 state is ExploreSuccessState?
-    Expanded(
-            child: Container(
-              height:200,
-              width: double.infinity,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount:state.movies.length,
-                itemBuilder: (context, index) {
-                return MovieItemWidget(
-                movieEntity: state.movies[index],
-                );
-              },),
-            ),
-          ):Container(),
+    Container(
+      height:200.h,
+      width: double.infinity,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount:state.movies.length,
+        itemBuilder: (context, index) {
+        return MovieItemWidget(
+        movieEntity: state.movies[index],
+          width:40,
+          imageSize: 10,
+          fontSize: 10,
+        );
+      },),
+    ):Container(),
         )
       ],
     );

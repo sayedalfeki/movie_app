@@ -4,7 +4,7 @@ abstract class ExploreState{}
 class InitExploreState extends ExploreState{}
 class ExploreLoadingState extends ExploreState{}
 class ExploreSuccessState extends ExploreState{
-  final List<Movies> movies;
+  final List<DataMovieEntity> movies;
 
   ExploreSuccessState({required this.movies});
 

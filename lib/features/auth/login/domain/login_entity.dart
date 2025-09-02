@@ -31,12 +31,12 @@ class LoginUser {
   LoginUser({
       this.name, 
       this.email, 
-      this.role,});
+      });
 
 
   String? name;
   String? email;
-  String? role;
+
 
 
 
@@ -49,13 +49,12 @@ class LoginUser {
 class LoginErrors {
   LoginErrors({
       this.msg, 
-      this.param, 
-      this.location,});
+      });
 
 
   String? msg;
-  String? param;
-  String? location;
+
+
 
 
 

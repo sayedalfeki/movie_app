@@ -14,15 +14,15 @@ class AppTheme
       fillColor: AppColor.appLightBlackColor,
       filled: true,
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(15.sp),
+        borderRadius: BorderRadius.circular(15.r),
         borderSide: BorderSide(color: Colors.transparent)
       ),
       focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.sp),
+          borderRadius: BorderRadius.circular(15.r),
           borderSide: BorderSide(color: Colors.transparent)
       ),
       enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(15.sp),
+          borderRadius: BorderRadius.circular(15.r),
           borderSide: BorderSide(color: Colors.transparent)
       ),
       hintStyle:AppStyles.whiteNormal15,
@@ -33,7 +33,7 @@ class AppTheme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ButtonStyle(
         shape: WidgetStatePropertyAll(RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8)
+          borderRadius: BorderRadius.circular(8.r)
         )),
         backgroundColor: WidgetStatePropertyAll(AppColor.appYellowColor),
         textStyle:WidgetStatePropertyAll(AppStyles.blackNormal20)

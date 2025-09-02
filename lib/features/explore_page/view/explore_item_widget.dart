@@ -14,7 +14,7 @@ import '../view_model/explore_view_model.dart';
 class ExploreItemWidget extends StatelessWidget {
    ExploreItemWidget({super.key,required this.genre});
   String genre;
-  List<Movies> movies=[];
+  List<DataMovieEntity> movies=[];
   @override
   Widget build(BuildContext context) {
     ExploreViewModel exploreViewModel=ExploreViewModel
@@ -39,7 +39,7 @@ class ExploreItemWidget extends StatelessWidget {
           controller:exploreViewModel.scrollController,
           itemCount:movies.length,
           itemBuilder: (context,index) {
-            return index>=movies.length-1?Center(child: CircularProgressIndicator(),):
+            return index>=movies.length-1?LoadingWidget():
             MovieItemWidget(
               movieEntity:movies[index],
             );

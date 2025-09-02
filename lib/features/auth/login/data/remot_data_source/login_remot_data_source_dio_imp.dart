@@ -38,7 +38,7 @@ class LoginRemoteDataSourceDioImp extends LoginDataSource
           {
             return ApiResponse(error: 'client error: ${loginDto.message}');
           }
-          return ApiResponse(error: 'client error: ${loginDto.errorsDto?.msg}');
+          return ApiResponse(error: 'client error: ${loginDto.errors?.msg}');
         }
       }
 

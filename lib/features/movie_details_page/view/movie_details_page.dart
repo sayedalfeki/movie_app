@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/config/app_routes.dart';
 import 'package:movie_app/core/api/movies_api_manager.dart';
 import 'package:movie_app/core/app_custom_widget/action_container_widget.dart';
 import 'package:movie_app/core/app_colors.dart';
@@ -59,7 +60,9 @@ final MovieDetailsViewmodel movieDetailsViewmodel=MovieDetailsViewmodel
                       elevatedButtonTheme.style?.copyWith(
                         backgroundColor: WidgetStatePropertyAll(AppColor.appRedColor)
                       ),
-                      onPressed: (){},
+                      onPressed: (){
+                        Navigator.pushNamed(context,AppRoutes.videoPageRoute);
+                      },
                       child:Text('watch',style: AppStyles.whiteNormal15,)),
                   Row(
                     children: [
@@ -71,9 +74,9 @@ final MovieDetailsViewmodel movieDetailsViewmodel=MovieDetailsViewmodel
                   Container(
                     height: 300,
                     child: ScreenShotsWidget(
-                      images:[state.movie?.largeScreenshotImage1,
-                        state.movie?.largeScreenshotImage2,
-                        state.movie?.largeScreenshotImage3
+                      images:[state.movie?.mediumScreenshotImage1,
+                        state.movie?.mediumScreenshotImage2,
+                        state.movie?.mediumScreenshotImage3
                       ],
                     ),
                   ),

@@ -6,7 +6,7 @@ import 'package:movie_app/features/movie_details_page/domain/movie_details_entit
 
 class MovieCastWidget extends StatelessWidget {
   const MovieCastWidget({super.key,required this.casts});
-final List<Cast> casts;
+final List<CastEntity> casts;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +28,7 @@ final List<Cast> casts;
       ) ,
     );
   }
-  Widget CastCard(Cast cast)
+  Widget CastCard(CastEntity cast)
   {
     return Container(
       margin: EdgeInsets.all(8),

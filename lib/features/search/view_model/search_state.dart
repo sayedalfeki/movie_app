@@ -4,7 +4,7 @@ abstract class SearchState{}
 class InitSearchState extends SearchState{}
 class SearchLoadingState extends SearchState{}
 class SearchSuccessState extends SearchState{
- final List<Movies> movies;
+ final List<DataMovieEntity> movies;
 
   SearchSuccessState({required this.movies});
 

@@ -4,20 +4,20 @@ class LoginDto extends LoginEntity {
   LoginDto({
     super.statusMsg,
     super.message,
-    this.errorsDto,
-    this.userDto,
+    super.errors,
+    super.user,
     super.token,});
 
   LoginDto.fromJson(dynamic json) {
     statusMsg = json['statusMsg'];
     message = json['message'];
-    errorsDto = json['errors'] != null ? LoginErrorsDto.fromJson(json['errors']) : null;
-    userDto = json['user'] != null ? LoginUserDto.fromJson(json['user']) : null;
+    errors = json['errors'] != null ? LoginErrorsDto.fromJson(json['errors']) : null;
+    user = json['user'] != null ? LoginUserDto.fromJson(json['user']) : null;
     token = json['token'];
   }
 
-  LoginErrorsDto? errorsDto;
-  LoginUserDto? userDto;
+  //LoginErrorsDto? errorsDto;
+  //LoginUserDto? userDto;
 
 
 
@@ -32,14 +32,14 @@ class LoginUserDto extends LoginUser{
   LoginUserDto({
     super.name,
     super.email,
-    super.role,});
+    this.role,});
 
   LoginUserDto.fromJson(dynamic json) {
     name = json['name'];
     email = json['email'];
     role = json['role'];
   }
-
+ String? role;
 }
 
 /// msg : "Email is required"
@@ -49,14 +49,15 @@ class LoginUserDto extends LoginUser{
 class LoginErrorsDto extends LoginErrors {
   LoginErrorsDto({
     super.msg,
-    super.param,
-    super.location,});
+    this.param,
+    this.location,});
 
   LoginErrorsDto.fromJson(dynamic json) {
     msg = json['msg'];
     param = json['param'];
     location = json['location'];
   }
-
+String? param;
+  String? location;
 
 }

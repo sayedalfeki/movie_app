@@ -24,7 +24,7 @@ class _SearchPageState extends State<SearchPage> {
     ),
   );
 
-  List<Movies> movies = [];
+  List<DataMovieEntity> movies = [];
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class _SearchPageState extends State<SearchPage> {
                             itemCount: movies.length,
                             itemBuilder: (context, index) {
                               return index >= movies.length - 2
-                                  ? Center(child: CircularProgressIndicator())
+                                  ?LoadingWidget()
                                   : MovieItemWidget(movieEntity: movies[index]);
                             },
                             gridDelegate:

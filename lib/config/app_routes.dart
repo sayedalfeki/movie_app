@@ -11,4 +11,6 @@ class AppRoutes
   static const String movieDetailsRoute='movie_details';
   static const String changePasswordRoute='change_password';
   static const String resetCodeRoute='reset_code';
+  static const String videoPageRoute='video_page';
+  static const String alarmPageRoute='alarm_page';
 }

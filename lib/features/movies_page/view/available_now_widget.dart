@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movie_app/config/app_routes.dart';
 import 'package:movie_app/core/app_assets.dart';
@@ -27,7 +28,7 @@ class AvailableNowWidget extends StatelessWidget {
    MoviesRepositoryImpl(moviesDataSourceRepository: MoviesRemoteDioDataSourceImpl())));
 
 
-List<Movies> movies=[];
+List<DataMovieEntity> movies=[];
    @override
   Widget build(BuildContext context) {
 
@@ -43,75 +44,78 @@ List<Movies> movies=[];
       },
       builder:(context, state) =>
       movies.isNotEmpty?
-      Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image:
-                  //AssetImage(images[0])
-                  NetworkImage(movies[moviesViewModel.selectedIndex].largeCoverImage!)
-              )
-            ),
-            child: Column(
-              children: [
-                Text('Available Now',style:GoogleFonts.abhayaLibre(
-                  color: AppColor.appWhiteColor,
-                  fontSize: 35
-                ),),
-                SizedBox(height: 20,),
-               CarouselSlider.builder(
-
-                   itemCount:movies.length,
-                   itemBuilder:(context, index, realIndex) {
-                     return index>=movies.length-1?
-                     Center(child: CircularProgressIndicator(),):
-                     GestureDetector(
-                         onTap: () {
-                           Navigator.pushNamed(context,AppRoutes.movieDetailsRoute);
-                         },
-                         child: Card(
-                           color: Colors.transparent,
-                           elevation: 50,
-                           child:MovieItemWidget(
-                             movieEntity:movies[index],
-                           ),
-                         ));
-                   },
-                   options:CarouselOptions(
-                     onPageChanged: (index, reason) {
-                       print('page index=$index & movies length is : ${movies.length}');
-                       if(index>=movies.length-1)
-                       {
-                         moviesViewModel.getAllMovies();
-                       }
-                       moviesViewModel.changeSelectedIndex(index);
-                       //if(index)
-
-                     },
-                     // onScrolled: (value) {
-                     //   print(value);
-                     // },
-                     initialPage:moviesViewModel.selectedIndex ,
-                     height: 400,
-                     enlargeCenterPage: true,
-                     viewportFraction: .6
-                   )),
-                Text('Watch Now',style:GoogleFonts.abhayaLibre(
+      SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image:
+                    //AssetImage(images[0])
+                    NetworkImage(movies[moviesViewModel.selectedIndex].largeCoverImage!)
+                )
+              ),
+              child: Column(
+                children: [
+                  Text('Available Now',style:GoogleFonts.abhayaLibre(
                     color: AppColor.appWhiteColor,
-                    fontSize: 35
-                ),),
-               //Expanded(child: WatchNowWidget(movieType: movies[moviesViewModel.selectedIndex].genres?[0]??''))
-              ],
+                    fontSize: 35.sp
+                  ),),
+                  SizedBox(height: 20.h,),
+                 CarouselSlider.builder(
+        
+                     itemCount:movies.length,
+                     itemBuilder:(context, index, realIndex) {
+                       return index>=movies.length-1?
+                       LoadingWidget():
+                       GestureDetector(
+                           onTap: () {
+                             Navigator.pushNamed(context,AppRoutes.movieDetailsRoute);
+                           },
+                           child: Card(
+                             color: Colors.transparent,
+                             elevation: 50,
+                             child:MovieItemWidget(
+                               movieEntity:movies[index],
+                             ),
+                           ));
+                     },
+                     options:CarouselOptions(
+                       onPageChanged: (index, reason) {
+        
+                         if(index>=movies.length-1)
+                         {
+                           moviesViewModel.getAllMovies();
+                         }
+                         moviesViewModel.changeSelectedIndex(index);
+                         //if(index)
+        
+                       },
+        
+                       initialPage:moviesViewModel.selectedIndex ,
+                       height: 400,
+                       enlargeCenterPage: true,
+                       viewportFraction: .6
+                     )),
+                  Text('Watch Now',style:GoogleFonts.abhayaLibre(
+                      color: AppColor.appWhiteColor,
+                      fontSize: 35.sp
+                  ),),
+        
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 15,),
-          Expanded(child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: WatchNowWidget(movieType: movies[moviesViewModel.selectedIndex].genres?[0]??''),
-          ))
-        ],
+            SizedBox(height: 15.h,),
+            Container(
+              //height: 200.h,
+              child: Padding(
+                padding:EdgeInsets.all(8.h),
+                child: WatchNowWidget(movieType: movies[moviesViewModel.selectedIndex].genres?[0]??''),
+              ),
+            )
+          ],
+        ),
       ):
       state is MoviesLoadingState?
       LoadingWidget():state is MoviesErrorState?

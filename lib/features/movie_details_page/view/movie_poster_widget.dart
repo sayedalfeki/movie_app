@@ -7,7 +7,7 @@ import 'package:movie_app/features/movie_details_page/domain/movie_details_entit
 
 class MoviePosterWidget extends StatelessWidget {
   const MoviePosterWidget({super.key,required this.movie});
-final Movie movie;
+final MovieEntity movie;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,7 +41,7 @@ final Movie movie;
               ],
             ),
           ),
-          Text(movie.title??'',
+          Text(movie.titleEnglish??'',
           style: AppStyles.whiteBold24,
           ),
           Center(child: Text('${movie.year}',style: AppStyles.whiteNormal15,),)

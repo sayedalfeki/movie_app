@@ -68,9 +68,9 @@ class RegisterPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                  children: [
-                   Image.asset(AppAssets.avatar3),
-                   Image.asset(AppAssets.avatar1),
-                   Image.asset(AppAssets.avatar2),
+                   Expanded(child: Image.asset(AppAssets.avatar3)),
+                   Expanded(child: Image.asset(AppAssets.avatar1)),
+                   Expanded(child: Image.asset(AppAssets.avatar2)),
                  ],
                ),
                 Spacer(),

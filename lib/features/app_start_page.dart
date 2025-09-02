@@ -12,6 +12,8 @@ import 'package:movie_app/features/onboarding_screen/view/onboarding_home_page.d
 import 'package:movie_app/features/onboarding_screen/view/onboarding_screen.dart';
 import 'package:movie_app/features/profile_page/edit_profile_page.dart';
 import 'package:movie_app/features/splash/view/splash_screen.dart';
+import 'package:movie_app/features/video/view/alarm_page.dart';
+import 'package:movie_app/features/video/view/video_page.dart';
 import '../config/app_theme.dart';
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -19,9 +21,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      minTextAdapt: true,
+      ensureScreenSize: true,
       designSize: Size(430,932),
       builder:(context, child) =>  MaterialApp(
-        title: 'Flutter Demo',
         theme: AppTheme.lightTheme,
         initialRoute: AppRoutes.splashRoute,
         routes: {
@@ -35,7 +38,9 @@ class MyApp extends StatelessWidget {
           AppRoutes.editProfileRoute:(_)=>EditProfilePage(),
           AppRoutes.movieDetailsRoute:(_)=>MovieDetailsPage(),
           AppRoutes.changePasswordRoute:(_)=>ChangePasswordWidget(),
-          AppRoutes.resetCodeRoute:(_)=>ResetCodeWidget()
+          AppRoutes.resetCodeRoute:(_)=>ResetCodeWidget(),
+          AppRoutes.videoPageRoute:(_)=>VideoPage(),
+          AppRoutes.alarmPageRoute:(_)=>AlarmPage(),
         },
       ),
     );

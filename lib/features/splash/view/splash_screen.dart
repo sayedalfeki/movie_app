@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/config/app_routes.dart';
 import 'package:movie_app/core/app_assets.dart';
 import 'package:movie_app/core/app_colors.dart';
 import 'package:movie_app/core/app_styles.dart';
 import 'package:movie_app/features/splash/view_model/splash_state.dart';
 import 'package:movie_app/features/splash/view_model/splash_view_model.dart';
+
+import '../../../core/app_size.dart';
 class SplashScreen extends StatelessWidget {
   final SplashViewModel splashViewModel = SplashViewModel();
   SplashScreen({super.key});
@@ -17,9 +20,10 @@ class SplashScreen extends StatelessWidget {
         if (state is SplashNavigationState) {
           Navigator.pushReplacementNamed(
             context,
-            state.isBoardingViewed == null
-                ? AppRoutes.onBoardingHomeRoute
-                : AppRoutes.homeRoute,
+            // state.isBoardingViewed == null
+                  AppRoutes.onBoardingHomeRoute
+            //     :
+            //     AppRoutes.loginRoute,
           );
         }
       },
@@ -31,13 +35,22 @@ class SplashScreen extends StatelessWidget {
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [Center(child: Image.asset(AppAssets.splashImage))],
+                children: [Center(child: Image.asset(AppAssets.splashImage,
+                  height:
+                  253.h ,
+                  width:
+                  253.h,
+                  //fit: BoxFit.fill,
+                ))],
               ),
             ),
-            Text(
-              'Route',
-              style: AppStyles.whiteBold24.copyWith(
-                color: AppColor.appYellowColor,
+            Container(
+
+              child: Text(
+                'Route',
+                style: AppStyles.whiteBold24.copyWith(
+                  color: AppColor.appYellowColor,
+                ),
               ),
             ),
             Text('powered by sayed elfeki', style: AppStyles.whiteNormal15),

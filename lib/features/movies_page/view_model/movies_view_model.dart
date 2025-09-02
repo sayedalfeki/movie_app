@@ -49,7 +49,7 @@ class MoviesViewModel extends Cubit<MoviesState>
     }
   }
 
-  List<String> fillGenreList(List<Movies> movies)
+  List<String> fillGenreList(List<DataMovieEntity> movies)
   {
 
     List<String> genre=[];

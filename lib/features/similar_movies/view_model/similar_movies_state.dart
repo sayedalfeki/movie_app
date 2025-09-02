@@ -6,7 +6,7 @@ class SimilarMoviesLoadingState extends SimilarMoviesState{}
 class SimilarMoviesSuccessState extends SimilarMoviesState
 {
 
-  final List<Movies>? movies;
+  final List<DataMovieEntity>? movies;
   SimilarMoviesSuccessState({ this.movies});
 }
 class SimilarMoviesErrorState extends SimilarMoviesState

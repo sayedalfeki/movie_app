@@ -4,7 +4,7 @@ abstract class MoviesState{}
 class InitMoviesState extends MoviesState{}
 class MoviesLoadingState extends MoviesState{}
 class MoviesSuccessState extends MoviesState{
-  final List<Movies> movies;
+  final List<DataMovieEntity> movies;
 
   MoviesSuccessState({required this.movies});
 
